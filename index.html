@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Teste Highlight</title>
+	<link rel="stylesheet" href="styles/default.css">
+</head>
+<body>
+	
+	<textarea id="source">
+		
+
+	</textarea>
+
+	<div id="target">
+		
+
+	</div>
+
+	<script src="highlight.pack.js"></script>
+	<script src="showdown.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<script>
+		function run() {
+			var text = document.getElementById('source').value,
+			target = document.getElementById('targetDiv'),
+			converter = new showdown.Converter(),
+			html = converter.makeHtml(text);	
+			target.innerHTML = html;
+		}
+	</script>
+</body>
+</html>
