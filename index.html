@@ -3,31 +3,40 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Teste Highlight</title>
-	<link rel="stylesheet" href="styles/default.css">
+	<link rel="stylesheet" href="styles/github.css">
 </head>
 <body>
 	
-	<textarea id="source">
-		
-
-	</textarea>
+	<textarea id="source" cols="150" rows="5" class="javascript"></textarea>
 
 	<div id="target">
 		
 
 	</div>
-
+	<script src="jquery-2.1.4.min.js"></script>
 	<script src="highlight.pack.js"></script>
 	<script src="showdown.js"></script>
+	<script src="autogrowtextarea.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 	<script>
 		function run() {
 			var text = document.getElementById('source').value,
-			target = document.getElementById('targetDiv'),
+			target = document.getElementById('target'),
 			converter = new showdown.Converter(),
 			html = converter.makeHtml(text);	
 			target.innerHTML = html;
+			if(html.indexOf("<pre><code>") > -1){
+				hljs.highlightBlock(target);
+			}	
 		}
+
+		$("#source").on('input',function(){
+			run();
+		});
+		$(document).ready(function() {
+			$("textarea").autoGrow();
+		});
 	</script>
+
 </body>
 </html>
